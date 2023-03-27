@@ -27,8 +27,7 @@ jobs:
       - name: Install dependencies
         run: conan install . --output-folder=${{github.workspace}}/build --build=missing -s compiler=gcc -s compiler.libcxx=libstdc++11 -s compiler.version=11 -s compiler.cppstd=gnu17
       - name: CMake configure
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
-          --DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/build/conan_toolchain.cmake
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/build/conan_toolchain.cmake
       - name: CMake build
         run: cmake --build ${{github.workspace}}/build
         

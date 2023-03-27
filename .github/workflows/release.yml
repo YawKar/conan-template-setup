@@ -29,5 +29,5 @@ jobs:
       - name: CMake configure
         run: cd ${{ github.workspace }}/build && cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
       - name: CMake build
-        run: cd ${{ github.workspace }} && cmake --build .
+        run: cd ${{ github.workspace }}/build && cmake --build .
         

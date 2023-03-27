@@ -25,9 +25,9 @@ jobs:
       - name: Create default profile
         run: conan profile detect --force
       - name: Install dependencies
-        run: conan install . --output-folder=${{github.workspace}}/build --build=missing -s compiler=gcc -s compiler.libcxx=libstdc++11 -s compiler.version=11 -s compiler.cppstd=gnu17
+        run: conan install . --output-folder=${{ github.workspace }}/build --build=missing #-s compiler=gcc -s compiler.libcxx=libstdc++11 -s compiler.version=11 -s compiler.cppstd=gnu17
       - name: CMake configure
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/build/conan_toolchain.cmake
+        run: cd ${{ github.workspace }}/build && cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
       - name: CMake build
-        run: cmake --build ${{github.workspace}}/build
+        run: cd ${{ github.workspace }}/build && cmake --build .
         
